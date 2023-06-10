@@ -1,13 +1,13 @@
 def calculate_grade(mark):
-    if mark >= 90:
+    if mark >= 90:#
         return "A+"
-    elif mark >= 80:
+    elif mark >= 80:#2
         return "A"
-    elif mark >= 70:
+    elif mark >= 70:#3
         return "B"
-    elif mark >= 60:
+    elif mark >= 60:#4
         return "C"
-    elif mark >= 50:
+    elif mark >= 50:#5
         return "D"
     else:
         return "F"
