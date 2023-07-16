@@ -1,0 +1,14 @@
+n = input("Enter a number: ")
+
+if n.isdigit():
+    n = int(n)
+    if n >= 0:
+        for i in range(n + 1):
+            if i % 2 == 0:
+                print(f"{i} is even.")
+            else:
+                print(f"{i} is odd.")
+    else:
+        print("Please enter a non-negative number.")
+else:
+    print("Invalid input. Please enter a valid number.")
