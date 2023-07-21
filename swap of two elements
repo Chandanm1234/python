@@ -1,0 +1,15 @@
+def swap_elements(lst, index1, index2):
+    lst[index1], lst[index2] = lst[index2], lst[index1]
+
+# Sample list
+my_list = [1, 2, 3, 4, 5]
+
+print("Original list:", my_list)
+
+index1 = int(input("Enter the index of the first element to swap: "))
+index2 = int(input("Enter the index of the second element to swap: "))
+
+# Call the swap_elements function to swap the elements
+swap_elements(my_list, index1, index2)
+
+print("Modified list:", my_list)
