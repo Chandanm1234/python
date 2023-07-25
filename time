@@ -1,0 +1,16 @@
+from datetime import datetime
+
+# Get the current time
+current_time = datetime.now()
+
+print("Current time:", current_time)
+
+# For example, to print the time in HH:MM:SS format:
+print("Current time (HH:MM:SS):", current_time.strftime("%H:%M:%S"))
+
+# To print the time in a different timezone, you can use the pytz module
+
+import pytz
+ny_timezone = pytz.timezone("America/New_York")
+ny_time = current_time.astimezone(ny_timezone)
+print("Current time in New York:", ny_time)
