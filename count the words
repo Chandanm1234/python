@@ -1,0 +1,6 @@
+a=input("enter a line")
+d=dict()
+y=a.split()
+for x in y:
+  d[x]=d.get(x,0)+1
+print(d)
