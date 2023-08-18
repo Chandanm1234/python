@@ -1,4 +1,4 @@
-#to count the number of word used
+
 a=input("enter a line")
 d=dict()
 y=a.split()
