@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dress Color</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Upload Dress Photo</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <button id="capture-button">Capture Photo</button><br>
+        <div id="webcam-container"></div><br>
+        <input type="hidden" id="photo-data" name="photo_data" required><br>
+        <input type="submit" value="Upload">
+    </form>
+
+    <script>
+        const captureButton = document.getElementById('capture-button');
+        const photoDataInput = document.getElementById('photo-data');
+        const webcamContainer = document.getElementById('webcam-container');
+
+        const constraints = {
+            video: true
+        };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.autoplay = true;
+                webcamContainer.appendChild(video);
+                
+                captureButton.addEventListener('click', () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                    const dataUrl = canvas.toDataURL('image/jpeg');
+                    photoDataInput.value = dataUrl;
+
+                    video.srcObject.getTracks().forEach(track => track.stop());
+                    video.remove();
+                });
+            })
+            .catch((error) => {
+                console.error('Error accessing webcam:', error);
+            });
+
+        // Prevent form submission, send data using AJAX
+        const uploadForm = document.getElementById('upload-form');
+        uploadForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            axios.post('/upload', new FormData(uploadForm))
+                .then(response => {
+                    console.log('Upload successful:', response.data);
+                })
+                .catch(error => {
+                    console.error('Upload error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
